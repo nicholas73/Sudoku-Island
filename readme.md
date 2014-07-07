@@ -23,4 +23,14 @@ The method used to generate puzzles is as follows:
 	
 4. Once all tests are passed, puzzle is added to database and served.
 
-*** These files serve as my portfolio demonstration pieces.  Please do not copy or distribute. ***1
+*** These files serve as my portfolio demonstration pieces.  Please do not copy or distribute. ***
+
+All code was written by myself, except for sudoku.py which is the work of Peter Norvig.  Originally, I had hoped to use Norvig's code in its entirety, except I found that his puzzles not only generate multiple solutions but that their initial revealed squares also clumped.  They were unusable puzzles and I ended up using very little of his code.
+
+Where sudoku.py is used are:
+
+1. Generate puzzles with 81 squares revealed, thus a complete puzzle.  This could have alternatively been accomplished by shuffling any puzzle by rows and columns within thirds of the puzzle, but since I had the Norvig code I modified its usage.
+
+2. Brute force solver - I modified his solver to randomly select possibilities, in order to detect multiple solutions.
+
+3. Solve time sampler - A rough gauge of puzzle difficulty by taking a large sample of puzzles and looking at the solve time distribution for the brute force solver.
