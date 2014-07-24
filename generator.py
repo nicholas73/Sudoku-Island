@@ -17,9 +17,11 @@ def easySort(grid):
 
     values = sudoku.parse_grid(grid)
 
+    # Check if all squares can be solved with basic techniques
     if not all(len(values[s]) == 1 for s in values):
         return False
 
+    # Screen puzzles with clumped initial squares
     for i in range(9):
         row_sum = 0
         col_sum = 0
@@ -31,6 +33,7 @@ def easySort(grid):
         if row_sum > 7 or row_sum < 2 or col_sum > 7 or col_sum < 2:
             return False
 
+    # Limit initial squares
     givens = 0
     for i in range(len(grid)):
         if grid[i] != '.':
@@ -38,12 +41,14 @@ def easySort(grid):
     if givens > 36:
         return False
 
+    # Ensure at least 8 of 9 numbers initially revealed, to avoid guessing
     initials = set(list(grid))
     initials.remove('.')
 
     if not len(initials) >= 8:
         return False
 
+    # Check for multiple solutions
     solutions = []
     for i in range(5):
         list_values = []
@@ -61,6 +66,7 @@ def mediumSort(grid):
 
     values = sudoku.parse_grid(grid)
 
+    # Screen puzzles with clumped initial squares
     for i in range(9):
         row_sum = 0
         col_sum = 0
@@ -72,6 +78,7 @@ def mediumSort(grid):
         if row_sum > 7 or row_sum < 2 or col_sum > 7 or col_sum < 2:
             return False
 
+    # Limit initial squares
     givens = 0
     for i in range(len(grid)):
         if grid[i] != '.':
@@ -79,12 +86,14 @@ def mediumSort(grid):
     if givens > 33:
         return False
 
+    # Ensure at least 8 of 9 numbers initially revealed, to avoid guessing
     initials = set(list(grid))
     initials.remove('.')
 
     if not len(initials) >= 8:
         return False
 
+    # Proxy difficult by number of squares solved by basic techniques
     solved = 0
     for s in values:
         if len(values[s]) == 1:
@@ -93,6 +102,7 @@ def mediumSort(grid):
     if solved < 81 and solved < 61:
         return False
 
+    # Check for multiple solutions
     solutions = []
     for i in range(30):
         list_values = []
@@ -110,6 +120,7 @@ def hardSort(grid):
 
     values = sudoku.parse_grid(grid)
 
+    # Screen puzzles with clumped initial squares
     for i in range(9):
         row_sum = 0
         col_sum = 0
@@ -121,6 +132,7 @@ def hardSort(grid):
         if row_sum > 7 or row_sum < 2 or col_sum > 7 or col_sum < 2:
             return False
 
+    # Limit initial squares
     givens = 0
     for i in range(len(grid)):
         if grid[i] != '.':
@@ -128,12 +140,14 @@ def hardSort(grid):
     if givens > 33:
         return False
 
+    # Ensure at least 8 of 9 numbers initially revealed, to avoid guessing
     initials = set(list(grid))
     initials.remove('.')
 
     if not len(initials) >= 8:
         return False
 
+    # Proxy difficult by number of squares solved by basic techniques
     solved = 0
     for s in values:
         if len(values[s]) == 1:
@@ -142,6 +156,7 @@ def hardSort(grid):
     if solved > 60 or solved < 45:    
         return False
 
+    # Check for multiple solutions
     solutions = []
     for i in range(99):
         list_values = []
@@ -159,6 +174,7 @@ def extremeSort(grid):
 
     values = sudoku.parse_grid(grid)
 
+    # Screen puzzles with clumped initial squares
     for i in range(9):
         row_sum = 0
         col_sum = 0
@@ -170,6 +186,7 @@ def extremeSort(grid):
         if row_sum > 7 or row_sum < 2 or col_sum > 7 or col_sum < 2:
             return False
 
+    # Limit initial squares
     givens = 0
     for i in range(len(grid)):
         if grid[i] != '.':
@@ -177,12 +194,14 @@ def extremeSort(grid):
     if givens > 33:
         return False
 
+    # Ensure at least 8 of 9 numbers initially revealed, to avoid guessing
     initials = set(list(grid))
     initials.remove('.')
 
     if not len(initials) >= 8:
         return False
 
+    # Proxy difficult by number of squares solved by basic techniques
     solved = 0
     for s in values:
         if len(values[s]) == 1:
@@ -191,6 +210,7 @@ def extremeSort(grid):
     if solved > 45:    
         return False
 
+    # Check for multiple solutions
     solutions = []
     for i in range(99):
         list_values = []
@@ -372,7 +392,8 @@ def solutionsTest(solution):
 
     for cl in combo_set:
         tally_index.extend(cl)
-
+        
+    # randomly select square by distribution weight set by occurance
     tally_object = collections.Counter(tally_index)
     tally_results = map(list, tally_object.most_common())
     t_counter = 0

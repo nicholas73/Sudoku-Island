@@ -270,12 +270,6 @@ View partially solved puzzles in browser.  For debugging.
 """
 class ValuesHandler(webapp2.RequestHandler):
     def get(self):
-        #values = []
-        #solutions = []
-        #singles =  []
-        #keys = sudoku.squares
-        #beginsquares = ['A1', 'B1', 'C1', 'D1', 'E1', 'F1', 'G1', 'H1', 'I1']
-        #endsquares = ['A9', 'B9', 'C9', 'D9', 'E9', 'F9', 'G9', 'H9', 'I9']
         multiple = []
 
         for i in range(10):
@@ -331,24 +325,9 @@ class ValuesHandler(webapp2.RequestHandler):
                 solutions.append(solution)
             multiple.append(len(set(solutions)))
             
-        
-            #grid = sudoku.parse_grid(initial)
-            #values.append(grid)
-            #solutions.append(solution)
 
-            #solved = 0
-            #for s in grid:
-            #    if len(grid[s]) == 1:
-            #        solved += 1
-            #singles.append(solved)
 
         template_values = {
-            #'singles' : singles,
-            #'values' : values,
-            #'endsquares' : endsquares,
-            #'keys' : keys,
-            #'initial' : initial,
-            #'solutions' : solutions
             'multiple' : multiple
         }
 
@@ -383,38 +362,6 @@ class MeasureHandler(webapp2.RequestHandler):
         extreme = ['2.1.8...5.3.7........1...9...5.4.73.4.75.16.9.86.9.5...4...2........6.7.6...7.2.8',
                    '375..1....8..2.5.3..193....8.....1.7...3.2...1.3.....4....543..5.9.6..8....1..456',
                    '8.735....5......8..91.2..4.4.....5...569.142...3.....6.4..6.13..7......4....489.7']
-                
-        #hard = ['.5..6.8..92....1......14.236....394...........896....549.13......6....81..5.8..7.',
-        #        '.6.....41.....42.8..71...63..574.......8.6.......129..75...18..8.32.....94.....7.',
-        #        '....4.6..28.6..5.....8..1.2..1....63..2...8..65....2..5.9..1.....3..4.59..4.9....',
-        #        '...96.1....1.......4..13.2.4593..7..3.......5..7..5893.8.25..3.......6....4.71...',
-        #        '.........1.27.8....5..1..9..792..4.18...4...55.3..726..8..6..2....4.91.7.........',
-        #        '5......9..8..7...21...2........924.7..95176..7.583........6...49...5..8..7......1',
-        #        '.4....5.79..1.7.4......36..47.......32.4.8.71.......84..43......3.8.9..22.7....3.',
-        #        '....638..18.......5...9..6...8..9...371...289...8..3...3..8...1.......75..764....',
-        #        '.81.6..........65...75..1.4..6..5..3.2..7..6.7..3..2..1.2..89...93..........1.54.',
-        #        '.185.....6.....45.4..2.6....9..38..6....5....1..42..8....9.1..7.86.....9.....584.',
-        #        '89...4.2.2....5.3..5.81......9...7..78.....95..2...8......28.5..3.9....7.2.6...89',
-        #        '6.8..4.....415.........8.24..5..3.9.28.....71.6.8..2..94.5.........724.....4..5.8',
-        #        '.73..61.....9.....4.21......9..1....36.4.8.27....7..5......16.8.....3.....62..57.',
-        #        '8..5.9....6..1...8...8....2..814.39....9.3....29.578..6....8...7...6..2....2.1..4',
-        #        '.6..4.......7.36..5....9.846...9.4..9.1.6.8.5..8.1...629.8....3..64.2.......5..4.',
-        #        '.2...5...19..64.5......386.3.164....8.......4....516.8.854......3.51..86...3...9.']
-
-        #extreme = ['21.....8......3.....39..61.1.4.6......52.79......1.4.6.51..28.....7......7.....25',
-        #           '.4125......6....4...28....1..47...8....5.2....5...36..6....18...2....4......9812.',
-        #           '...3..587....9.24.7...84.........469.........143.........81...3.61.2....839..7...',
-        #           '......1.....3...68.4..17..9.34........12.48........67.7..89..2.36...1.....8......',
-        #           '.78..2..5...1.7....2..6....3..6...9..42...86..5...8..4....1..8....8.9...8..7..31.',
-        #           '9...41.8.2............3.465..732.....3.....1.....987..481.5............6.6.78...1',
-        #           '..9..3...6...2..9.2.389...48..6......1.....5......9..15...846.9.7..3...2...2..8..',
-        #           '....1...9.5....4..27.6...1.9..4.1.....8...5.....7.6..1.6...8.25..2....9.8...7....',
-        #           '.....3..4.5.48.2..2...6...9..6..84.1.........7.41..9..3...2...8..2.15.7.6..8.....',
-        #           '.4..2...8...3..7.9.58..94....15.....4.......5.....23....58..24.2.3..7...9...1..6.',
-        #           '.....64....1..2.5....7..32..6....13...86.95...32....8..56..3....8.4..9....78.....',
-        #           '....2...4.9.6.3...17......826.3........152........7.437......95...5.6.1.3...8....',
-        #           '.4..63..1...1...3.........7...8..16...15392...32..1...6.........5...4...9..72..1.',
-        #           '..7.4...3...5....1..9..6...3....7.84..5...6..68.1....5...3..5..4....8...1...2.8..']
 
         e_singles = []
         e_solutions = []
@@ -523,49 +470,7 @@ class StrategyHandler(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('strategy.html')
         self.response.out.write(template.render())
-'''
-class PrintHandler(webapp2.RequestHandler):
-    def get(self):
-        test = Puzzle.all().get() #test if there are database entries
-        if test:
-            level = self.request.get("level") #get level and number from query
-            number = self.request.get("number")
-            if number.isdigit():
-                number = int(number)
-            else:
-                number = None
-            if not level: level = 'Easy' #if no level query, default Easy
-            total = Puzzle.all().filter('level =', level).order('-number').get()
-            if number==None or  number > total.number: #if no number query, get random puzzle               
-                number = random.randint(1, total.number)
-            puzzle = Puzzle.all().filter('level =', level).filter('number =', number).get() #puzzle object
 
-            initial = dict(zip(sudoku.squares, puzzle.start))
-            #solution = dict(zip(sudoku.squares, puzzle.values))
-            solution = puzzle.values
-            level = puzzle.level
-            number = puzzle.number
-
-        else:
-            sample_start = '85...24..72......9..4.........1.7..23.5...9...4...........8..7..17..........36.4.'
-            sample_values = '859612437723854169164379528986147352375268914241593756432981675617425893598736241'
-
-            initial = dict(zip(sudoku.squares, sample_start))
-            #solution = dict(zip(sudoku.squares, sample_values))
-            solution = sample_values
-            level = 'Hard'
-            number = 1
-
-        template_values = {
-            'start': initial,
-            'solution': solution,
-            'level' : level,
-            'number' : number
-        }
-        
-        template = jinja_environment.get_template('print.html')
-        self.response.out.write(template.render(template_values))
-'''   
 """
 Close Facebook dialog popup.
 """    
@@ -665,7 +570,7 @@ class SudokuHandler(webapp2.RequestHandler):
                 solution = puzzle[1]
             else:
                 number = None
-                initial, solution, level, number = self.get_from_database(level, number)
+                initial, solution, level, number = self.get_from_database(level, number) # if not in memcache, pull from database
         else:
             initial, solution, level, number = self.get_from_database(level, number)
 
@@ -792,7 +697,6 @@ app = webapp2.WSGIApplication([('/', SudokuHandler),
                                ('/measure', MeasureHandler),
                                ('/about', AboutHandler),
                                ('/strategy', StrategyHandler),
-                               #('/print', PrintHandler),
                                ('/close', CloseHandler),
                                ('/sample', SampleHandler),
                                ('/mini', MiniHandler),
